@@ -43,11 +43,29 @@ const song1 = await Song.create(coolSong);
     console.log("------------Desotry --------")
     const destroySong = await updateSong.destroy();
     console.log(JSON.stringify(destroySong, null, 2))
+  
+  
+   //create a band
+  const testBand = await Band.create({ name: "Test Band", genre: "Rock" });
+  console.log(testBand);
+
+  //update the band
+  let updatedBand = await testBand.update({
+    name: "Updated Band",
+    genre: "Pop",
+  });
+  console.log(updatedBand);
+
+  //delete the band
+  await testBand.destroy();
+  const deletedBand = await Band.findByPk(testBand.id);
+  console.log(deletedBand);
 }
 main();
 
+
 module.exports = {
-    Band,
-    Musician,
-    Song
+  Band,
+  Musician,
+  Song,
 };
