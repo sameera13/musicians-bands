@@ -13,4 +13,5 @@ module.exports = {
   Sequelize,
   DataTypes,
   Model,
+};
 

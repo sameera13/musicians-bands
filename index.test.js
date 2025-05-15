@@ -90,8 +90,13 @@ describe("Band, Musician, and Song Models", () => {
           expect(deletedSong).toBeNull();
     });
   
-
+  test("can delete a Musician", async () => {
+    // TODO - test deleting a musician
+    const musician = await Musician.create({ name: 'Kurt Cobain', instrument: 'Guitar' });
+    await musician.destroy();
+    const found = await Musician.findByPk(musician.id);
+    expect(found).toBeNull();
+  });
   
 });
-
 
