@@ -17,8 +17,9 @@
     "url": "https://github.com/MultiverseLearningProducts/musicians-bands/issues"
   },
   "dependencies": {
-    "sequelize": "^6.21.4",
-    "sqlite3": "^5.0.11"
+    "@types/jest": "^29.5.14",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "jest": "^28.1.3"
