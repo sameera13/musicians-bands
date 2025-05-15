@@ -117,6 +117,35 @@ describe("Band, Musician, and Song Models", () => {
     expect(found).toBeNull();
   });
 
+  test("One band has many musicians", async () => {
+    //create a band
+    const band = await Band.create({ name: "Test Band", genre: "Rock" });
+
+    //create musicians
+    const musician1 = await Musician.create({
+      name: "Kurt Cobain",
+      instrument: "Guitar",
+    });
+    const musician2 = await Musician.create({
+      name: "Cobain Kurt",
+      instrument: "Bass",
+    });
+    const musician3 = await Musician.create({
+      name: "Curt Kobain",
+      instrument: "Guitar",
+    });
+
+    //add musicians to band
+    await band.setMusicians([musician1, musician2, musician3]);
+
+    //get musicians from band
+    const musicians = await band.getMusicians();
+
+    expect(musicians[0].id).toBe(musician1.id);
+    expect(musicians[1].id).toBe(musician2.id);
+    expect(musicians[2].id).toBe(musician3.id);
+  });
+
   afterAll(async () => {
     // close the connection to the database
     await sequelize.close();
