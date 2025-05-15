@@ -116,4 +116,9 @@ describe("Band, Musician, and Song Models", () => {
     const found = await Musician.findByPk(musician.id);
     expect(found).toBeNull();
   });
+
+  afterAll(async () => {
+    // close the connection to the database
+    await sequelize.close();
+  });
 });
