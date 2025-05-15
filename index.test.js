@@ -146,6 +146,26 @@ describe("Band, Musician, and Song Models", () => {
     expect(musicians[2].id).toBe(musician3.id);
   });
 
+  test("One band has many musicians and bands has many songs", async () => {
+    //create a band
+    const band = await Band.create({ name: "Test Band", genre: "Rock" });
+    const testSong1 = await Song.create({
+      title: "Cool Song",
+      year: 1999,
+      length: 20,
+    });
+    const testSong2 = await Song.create({
+      title: "Cool Song2",
+      year: 1999,
+      length: 20,
+    });
+
+    await band.addSong([testSong1, testSong2]);
+    const songs = await band.getSongs();
+
+    expect(songs[0].id).toBe(testSong1.id);
+    expect(songs[1].id).toBe(testSong2.id);
+  });
   afterAll(async () => {
     // close the connection to the database
     await sequelize.close();
