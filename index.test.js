@@ -21,7 +21,9 @@ describe("Band, Musician, and Song Models", () => {
 
   test("can create a Musician", async () => {
     // TODO - test creating a musician
-    expect("NO TEST").toBe("EXPECTED VALUE HERE");
+    const testMusician = await Musician.create({ name: "Tom", instrument: "Guitar" });
+        expect(testMusician.name).toBe("Tom");
+        expect(testMusician.instrument).toBe("Guitar");
   });
 
   test("can update a Band", async () => {
@@ -37,7 +39,9 @@ describe("Band, Musician, and Song Models", () => {
 
   test("can update a Musician", async () => {
     // TODO - test updating a musician
-    expect("NO TEST").toBe("EXPECTED VALUE HERE");
+    const musician = await Musician.create({ name: "Chris Martin", instrument: "Piano" });
+  const updatedMusician = await musician.update({ instrument: "Guitar" });
+  expect(updatedMusician.instrument).toBe("Guitar");
   });
 
   test("can delete a Band", async () => {
@@ -82,8 +86,10 @@ describe("Band, Musician, and Song Models", () => {
   
   test("can delete a Musician", async () => {
     // TODO - test deleting a musician
-    expect("NO TEST").toBe("EXPECTED VALUE HERE");
+    const musician = await Musician.create({ name: 'Kurt Cobain', instrument: 'Guitar' });
+    await musician.destroy();
+    const found = await Musician.findByPk(musician.id);
+    expect(found).toBeNull();
   });
   
 });
-
