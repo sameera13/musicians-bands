@@ -13,9 +13,5 @@ module.exports = {
   Sequelize,
   DataTypes,
   Model,
-<<<<<<< HEAD
 };
 
-=======
-};
->>>>>>> sameera_dev

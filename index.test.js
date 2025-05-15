@@ -52,10 +52,16 @@ describe("Band, Musician, and Song Models", () => {
     expect(deletedBand).toBeNull();
   });
 
-    test('can delete a Musician', async () => {
-        // TODO - test deleting a musician
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
-    })
+
+  test("can delete a Musician", async () => {
+    // TODO - test deleting a musician
+    const musician = await Musician.create({ name: 'Kurt Cobain', instrument: 'Guitar' });
+    await musician.destroy();
+    const found = await Musician.findByPk(musician.id);
+    expect(found).toBeNull();
+  });
+});
+
 
     test('can create a Song', async () => {
         // TODO - test creating a band
@@ -93,3 +99,4 @@ describe("Band, Musician, and Song Models", () => {
   });
   
 });
+
